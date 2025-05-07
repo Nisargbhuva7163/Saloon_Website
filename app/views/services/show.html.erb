@@ -1,0 +1,9 @@
+<h1>Service Details</h1>
+
+<p><strong>Name:</strong><%= @service.name %></p>
+<p><strong>Price:</strong><%= @service.price %></p>
+
+
+<%= link_to "Edit", edit_service_path(@service) %>
+
+<%= link_to "Back", new_service_path %>
