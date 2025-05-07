@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/activerecord-hackery/ransack.git
+  revision: 9c66f49fc1be1a570d7b5ff1768b0bbc4a4f4524
+  specs:
+    ransack (4.3.0)
+      activerecord (>= 7.1)
+      activesupport (>= 7.1)
+      i18n
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -373,6 +382,7 @@ DEPENDENCIES
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.2)
+  ransack!
   rubocop-rails-omakase
   selenium-webdriver
   solid_cable
