@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   resources :services
   resources :combos
+  resources :customers
   root to: "services#new"
 end
