@@ -1,0 +1,28 @@
+<%= form_with(model: combo, local: true) do |form| %>
+  <% if combo.errors.any? %>
+    <ul>
+      <% combo.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
+    <%= form.label :service_id, "Select Service" %><br>
+    <%= form.collection_select :service_id, services, :id, :name, prompt: "Choose a service" %>
+  </div>
+
+  <div>
+    <%= form.label :quantity %><br>
+    <%= form.number_field :quantity, min: 1 %>
+  </div>
+
+  <div>
+    <%= form.label :discount, "Discount" %><br>
+    <%= form.number_field :discount, step: 0.01 %>
+  </div>
+
+  <div>
+    <%= form.submit combo.new_record? ? "Create Combo" : "Update Combo" %>
+  </div>
+<% end %>

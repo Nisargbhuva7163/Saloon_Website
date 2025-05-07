@@ -1,0 +1,10 @@
+<h1>Combo Details</h1>
+
+<p><strong>Service:</strong> <%= @combo.service.name %></p>
+<p><strong>Unit Price:</strong> <%= @combo.service.price %></p>
+<p><strong>Quantity:</strong> <%= @combo.quantity %></p>
+<p><strong>Discount:</strong> <%= @combo.discount %> %</p>
+<p><strong>Total Price after Discount:</strong> <%= @combo.total_price %></p>
+
+<%= link_to "Edit", edit_combo_path(@combo) %> |
+<%= link_to "Back to All Combos", new_combo_path %>

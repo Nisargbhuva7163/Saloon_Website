@@ -1,0 +1,28 @@
+<table>
+  <thead>
+  <tr>
+    <th>Service</th>
+    <th>Quantity</th>
+    <th>Discount (%)</th>
+    <th>Total Price</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% if @combos.present? %>
+    <% @combos.each do |combo| %>
+      <tr>
+        <td><%= combo.service.name %></td>
+        <td><%= combo.quantity %></td>
+        <td><%= combo.discount %></td>
+        <td><%= combo.total_price %></td>
+        <td>
+          <%= link_to "View", combo_path(combo) %> |
+          <%= link_to "Edit", edit_combo_path(combo) %> |
+          <%= button_to "Delete", combo_path(combo), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+        </td>
+      </tr>
+    <% end %>
+
+  <% end %>
+  </tbody>
+</table>
