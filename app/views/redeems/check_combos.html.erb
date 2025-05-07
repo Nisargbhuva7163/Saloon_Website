@@ -1,0 +1,35 @@
+<h1>Combos for <%= @customer.name %></h1>
+
+<% if flash[:notice] %>
+  <div class="alert alert-success"><%= flash[:notice] %></div>
+<% elsif flash[:alert] %>
+  <div class="alert alert-danger"><%= flash[:alert] %></div>
+<% end %>
+
+<% if @combos.any? %>
+  <h3>Assigned Combos:</h3>
+  <ul>
+    <% @combos.each do |combo| %>
+      <% total_redeemed = Redeem.where(customer: @customer, combo: combo).count %>
+      <% remaining = combo.quantity - total_redeemed %>
+
+      <li>
+        <strong><%= combo.service.name %></strong><br>
+        Total Quantity: <%= combo.quantity %><br>
+        Redeemed: <%= total_redeemed %><br>
+        Remaining: <%= remaining %><br>
+
+        <% if remaining > 0 %>
+          <%= button_to "Redeem", redeem_combo_redeems_path(combo_id: combo.id), method: :post, class: "btn btn-success btn-sm" %>
+        <% else %>
+          <span class="text-muted">No more redemptions left</span>
+        <% end %>
+      </li>
+    <% end %>
+
+  </ul>
+<% else %>
+  <p>This customer does not have any combos assigned.</p>
+<% end %>
+
+<%= link_to "Back", redeems_path, class: "btn btn-secondary" %>
