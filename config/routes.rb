@@ -21,5 +21,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :redeems, only: [ :index ] do
+    collection do
+      post :select_customer
+      get :check_combos
+      post :redeem_combo
+    end
+  end
+
   root to: "services#new"
 end
