@@ -23,6 +23,11 @@
   </head>
 
   <body>
+
+    <nav style="background: #f0f0f0; padding: 1rem; margin-bottom: 1rem;">
+      <%= link_to "Add Service", new_service_path, style: "margin-right: 15px;" %>
+      <%= link_to "Add Combo", new_combo_path, style: "margin-right: 15px;" %>
+    </nav>
     <%= yield %>
   </body>
 </html>
