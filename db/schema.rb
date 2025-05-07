@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_07_053455) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_07_054606) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -22,6 +22,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_07_053455) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["service_id"], name: "index_combos_on_service_id"
+  end
+
+  create_table "customer_combos", force: :cascade do |t|
+    t.bigint "customer_id", null: false
+    t.bigint "combo_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["combo_id"], name: "index_customer_combos_on_combo_id"
+    t.index ["customer_id"], name: "index_customer_combos_on_customer_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -40,4 +49,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_07_053455) do
   end
 
   add_foreign_key "combos", "services"
+  add_foreign_key "customer_combos", "combos"
+  add_foreign_key "customer_combos", "customers"
 end

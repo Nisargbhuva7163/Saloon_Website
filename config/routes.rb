@@ -13,5 +13,13 @@ Rails.application.routes.draw do
   resources :services
   resources :combos
   resources :customers
+
+  resources :customer_combos, only: [ :index, :create ] do
+    collection do
+      post :select_customer    # Step 1: select a customer (radio)
+      get :assign_combo        # Step 2: assign combo to selected customer
+    end
+  end
+
   root to: "services#new"
 end
