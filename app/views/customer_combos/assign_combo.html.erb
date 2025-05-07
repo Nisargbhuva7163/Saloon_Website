@@ -1,0 +1,19 @@
+<h1>Assign Combos to Selected Customer</h1>
+
+<h3>Selected Customer:</h3>
+<ul>
+  <li><%= @customer.name %> (<%= @customer.email %>)</li>
+</ul>
+
+<%= form_with url: customer_combos_path, method: :post, local: true do |form| %>
+  <div class="mb-3">
+    <% @combos.each do |combo| %>
+      <div class="form-check">
+        <%= form.check_box :combo_ids, { multiple: true }, combo.id%>
+        <%= form.label :combo_ids, "#{combo.service.name} - Quantity: #{combo.quantity}, Discount: #{combo.discount}%", class: "form-check-label" %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= form.submit "Assign Combos", class: "btn btn-primary" %>
+<% end %>
