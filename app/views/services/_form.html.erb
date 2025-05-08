@@ -1,7 +1,7 @@
-<%= form_with(model: service, local: true) do |form| %>
+<%= form_with(model: service, local: true, html: { class: "w-50 mx-auto mt-4" }) do |form| %>
   <% if service.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(service.errors.count, "error") %> prohibited this service from being saved:</h2>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(service.errors.count, "error") %> prohibited this service from being saved:</h4>
       <ul>
         <% service.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -10,17 +10,17 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
+  <div class="mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :price %><br>
-    <%= form.number_field :price, step: 0.01 %>
+  <div class="mb-3">
+    <%= form.label :price, class: "form-label" %>
+    <%= form.number_field :price, step: 0.01, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="d-grid">
+    <%= form.submit service.new_record? ? "Create Service" : "Update Service", class: "btn btn-primary" %>
   </div>
 <% end %>

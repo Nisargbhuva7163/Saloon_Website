@@ -1,5 +1,14 @@
-<h1>New Service</h1>
+<div class="container mt-5">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h1>Create New Service</h1>
+    </div>
+    <div class="card-body">
+      <%= render "form", service: @service %>
+    </div>
+  </div>
 
-<%= render "form", service: @service %>
-
-<%= render "service_list" %>
+  <div class="mt-4">
+    <%= render "service_list" %>
+  </div>
+</div>

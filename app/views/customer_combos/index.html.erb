@@ -1,33 +1,52 @@
-<h1>Select Customers to Assign Combo</h1>
+<h1 class="mb-4 text-center">Select Customers to Assign Combo</h1>
 
-<%= search_form_for @q, url: customer_combos_path, method: :get, class: "mb-3" do |f| %>
-  <div class="form-group">
-    <%= f.label :name_cont, "Search Customers" %>
-    <%= f.search_field :name_cont, class: "form-control", placeholder: "Enter customer name" %>
+<div class="card">
+  <div class="card-header">
+    <h4>Search Customers</h4>
   </div>
-  <%= f.submit "Search", class: "btn btn-primary mt-2" %>
-<% end %>
+
+  <div class="card-body">
+    <%= search_form_for @q, url: customer_combos_path, method: :get, class: "mb-3" do |f| %>
+      <div class="form-group">
+        <%= f.label :name_cont, "Search Customers", class: "form-label" %>
+        <%= f.search_field :name_cont, class: "form-control", placeholder: "Enter customer name" %>
+      </div>
+      <%= f.submit "Search", class: "btn btn-primary mt-2" %>
+    <% end %>
+  </div>
+</div>
 
 <%= form_with url: assign_combo_customer_combos_path, method: :get, local: true do |form| %>
-  <table class="table table-striped mt-4">
-    <thead>
-    <tr>
-      <th>Select</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Phone</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @customers.each do |customer| %>
-      <tr>
-        <td><%= form.radio_button :customer_id, customer.id %></td>
-        <td><%= customer.name %></td>
-        <td><%= customer.email %></td>
-        <td><%= customer.phone_number %></td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-  <%= form.submit "Next: Assign Combo", class: "btn btn-success" %>
+  <div class="card mt-4">
+    <div class="card-header">
+      <h4>Select Customer</h4>
+    </div>
+
+    <div class="card-body">
+      <table class="table table-striped mt-4">
+        <thead class="table-dark">
+        <tr>
+          <th>Select</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @customers.each do |customer| %>
+          <tr>
+            <td><%= form.radio_button :customer_id, customer.id, class: "form-check-input" %></td>
+            <td><%= customer.name %></td>
+            <td><%= customer.email %></td>
+            <td><%= customer.phone_number %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card-footer text-center">
+      <%= form.submit "Next: Assign Combo", class: "btn btn-success btn-lg mt-3" %>
+    </div>
+  </div>
 <% end %>

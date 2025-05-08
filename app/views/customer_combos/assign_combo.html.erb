@@ -1,23 +1,31 @@
-<h1>Assign Combos to Selected Customer</h1>
+<h1 class="mb-4 text-center">Assign Combos to Selected Customer</h1>
 
-<h3>Selected Customer:</h3>
-<ul>
-  <li><strong>Name:</strong> <%= @customer.name %></li>
-  <li><strong>Email:</strong> <%= @customer.email %></li>
-</ul>
-
-<%= form_with url: customer_combos_path, method: :post, local: true do |form| %>
-  <!-- Hidden field to send customer_id -->
-  <%= hidden_field_tag :customer_id, @customer.id %>
-
-  <div class="mb-3">
-    <% @combos.each do |combo| %>
-      <div class="form-check">
-        <%= check_box_tag "combo_ids[]", combo.id, false, class: "form-check-input" %>
-        <%= label_tag "combo_ids_#{combo.id}", "#{combo.service.name} - Quantity: #{combo.quantity}, Discount: #{combo.discount}%", class: "form-check-label" %>
-      </div>
-    <% end %>
+<div class="card">
+  <div class="card-header">
+    <h3 class="mb-3">Selected Customer:</h3>
   </div>
 
-  <%= form.submit "Assign Combos", class: "btn btn-primary mt-3" %>
-<% end %>
+  <div class="card-body">
+    <ul class="list-group mb-4">
+      <li class="list-group-item"><strong>Name:</strong> <%= @customer.name %></li>
+      <li class="list-group-item"><strong>Email:</strong> <%= @customer.email %></li>
+    </ul>
+
+    <%= form_with url: customer_combos_path, method: :post, local: true, class: "form" do |form| %>
+      <!-- Hidden field to send customer_id -->
+      <%= hidden_field_tag :customer_id, @customer.id %>
+
+      <div class="mb-3">
+        <h4>Select Combos to Assign:</h4>
+        <% @combos.each do |combo| %>
+          <div class="form-check mb-2">
+            <%= check_box_tag "combo_ids[]", combo.id, false, class: "form-check-input" %>
+            <%= label_tag "combo_ids_#{combo.id}", "#{combo.service.name} - Quantity: #{combo.quantity}, Discount: #{combo.discount}%", class: "form-check-label" %>
+          </div>
+        <% end %>
+      </div>
+
+      <%= form.submit "Assign Combos", class: "btn btn-primary btn-lg mt-3" %>
+    <% end %>
+  </div>
+</div>
