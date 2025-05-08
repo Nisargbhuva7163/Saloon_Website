@@ -1,28 +1,32 @@
-<%= form_with(model: combo, local: true) do |form| %>
+<%= form_with(model: combo, local: true, html: { class: "w-50 mx-auto mt-4" }) do |form| %>
   <% if combo.errors.any? %>
-    <ul>
-      <% combo.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
+    <div class="alert alert-danger">
+      <ul>
+        <% combo.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
 
-  <div>
-    <%= form.label :service_id, "Select Service" %><br>
-    <%= form.collection_select :service_id, services, :id, :name, prompt: "Choose a service" %>
+  <div class="mb-3">
+    <%= form.label :service_id, "Select Service", class: "form-label" %>
+    <%= form.collection_select :service_id, services, :id, :name, { prompt: "Choose a service" }, class: "form-select" %>
   </div>
 
-  <div>
-    <%= form.label :quantity %><br>
-    <%= form.number_field :quantity, min: 1 %>
+  <div class="mb-3">
+    <%= form.label :quantity, class: "form-label" %>
+    <%= form.number_field :quantity, min: 1, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :discount, "Discount" %><br>
-    <%= form.number_field :discount, step: 0.01 %>
+  <div class="mb-3">
+    <%= form.label :discount, "Discount", class: "form-label" %>
+    <%= form.number_field :discount, step: 0.01, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.submit combo.new_record? ? "Create Combo" : "Update Combo" %>
+  <div class="d-grid">
+    <%= form.submit combo.new_record? ? "Create Combo" : "Update Combo", class: "btn btn-primary" %>
   </div>
 <% end %>
+
+<br/>

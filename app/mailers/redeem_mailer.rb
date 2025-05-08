@@ -1,5 +1,5 @@
 class RedeemMailer < ApplicationMailer
-  default from: 'mrnisargbhuvaofficial112003@gmail.com'
+  default from: "mrnisargbhuvaofficial112003@gmail.com"
 
   # ← Define this method
   def combo_redeemed(customer, combo)
@@ -7,7 +7,7 @@ class RedeemMailer < ApplicationMailer
     @combo    = combo
     mail(
       to:      @customer.email,
-      subject: 'Your Combo Has Been Redeemed!'
+      subject: "Your Combo Has Been Redeemed!"
     )
   end
 end

@@ -1,5 +1,5 @@
 class RedeemsController < ApplicationController
-  before_action :set_customer, only: [:check_combos, :redeem_combo]
+  before_action :set_customer, only: [ :check_combos, :redeem_combo ]
 
   def index
     @customers = Customer.all
