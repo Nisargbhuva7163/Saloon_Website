@@ -1,5 +1,5 @@
 class CustomerCombosController < ApplicationController
-  before_action :set_selected_customer, only: [:assign_combo, :create]
+  before_action :set_selected_customer, only: [ :assign_combo, :create ]
 
   def index
     @customers = Customer.all

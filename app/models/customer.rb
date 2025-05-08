@@ -1,5 +1,5 @@
 class Customer < ApplicationRecord
-  has_many :customer_combos,dependent: :destroy
+  has_many :customer_combos, dependent: :destroy
   has_many :combos, through: :customer_combos
 
 

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: {
+    registrations: "users/registrations"
+  }
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -14,7 +18,7 @@ Rails.application.routes.draw do
   resources :combos
   resources :customers
 
-  resources :customer_combos, only: [:index, :create] do
+  resources :customer_combos, only: [ :index, :create ] do
     collection do
       post :select_customer             # Step 1: Select a customer with radio button
       get :assign_combo                 # Step 2: Assign combo to selected customer
@@ -22,12 +26,11 @@ Rails.application.routes.draw do
   end
 
   # Routes for Redeems (Selection, Checking, and Redemption)
-  resources :redeems, only: [:index] do
+  resources :redeems, only: [ :index ] do
     collection do
       post :select_customer             # Step 1: Select a customer for redeeming
       get  :check_combos                # Step 2: Display customer's available combos
       post :redeem_combo                # Step 3: Redeem a selected combo
     end
   end
-
 end

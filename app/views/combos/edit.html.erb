@@ -1,5 +1,13 @@
-<h1>Edit Combo</h1>
-
-<%= render "form", combo: @combo, services: @services %>
-
-<%= link_to "Back to all combos", new_combo_path %>
+<div class="container mt-5">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h1>Edit Combo</h1>
+    </div>
+    <div class="card-body">
+      <%= render "form", combo: @combo, services: @services %>
+    </div>
+    <div class="card-footer text-end">
+      <%= link_to "Back to All Combos", new_combo_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+</div>
