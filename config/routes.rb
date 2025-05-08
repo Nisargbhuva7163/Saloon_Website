@@ -8,26 +8,26 @@ Rails.application.routes.draw do
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-
+  root to: "services#new"
   # Defines the root path route ("/")
   resources :services
   resources :combos
   resources :customers
 
-  resources :customer_combos, only: [ :index, :create ] do
+  resources :customer_combos, only: [:index, :create] do
     collection do
-      post :select_customer    # Step 1: select a customer (radio)
-      get :assign_combo        # Step 2: assign combo to selected customer
+      post :select_customer             # Step 1: Select a customer with radio button
+      get :assign_combo                 # Step 2: Assign combo to selected customer
     end
   end
 
-  resources :redeems, only: [ :index ] do
+  # Routes for Redeems (Selection, Checking, and Redemption)
+  resources :redeems, only: [:index] do
     collection do
-      post :select_customer
-      get :check_combos
-      post :redeem_combo
+      post :select_customer             # Step 1: Select a customer for redeeming
+      get  :check_combos                # Step 2: Display customer's available combos
+      post :redeem_combo                # Step 3: Redeem a selected combo
     end
   end
 
-  root to: "services#new"
 end

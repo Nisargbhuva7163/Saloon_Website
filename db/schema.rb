@@ -42,12 +42,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_07_061100) do
   end
 
   create_table "redeems", force: :cascade do |t|
-    t.bigint "customer_id", null: false
-    t.bigint "combo_id", null: false
+    t.bigint "customer_combo_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["combo_id"], name: "index_redeems_on_combo_id"
-    t.index ["customer_id"], name: "index_redeems_on_customer_id"
+    t.index ["customer_combo_id"], name: "index_redeems_on_customer_combo_id"
   end
 
   create_table "services", force: :cascade do |t|
@@ -60,6 +58,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_07_061100) do
   add_foreign_key "combos", "services"
   add_foreign_key "customer_combos", "combos"
   add_foreign_key "customer_combos", "customers"
-  add_foreign_key "redeems", "combos"
-  add_foreign_key "redeems", "customers"
+  add_foreign_key "redeems", "customer_combos"
 end

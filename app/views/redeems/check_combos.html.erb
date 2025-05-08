@@ -1,35 +1,39 @@
-<h1>Combos for <%= @customer.name %></h1>
-
-<% if flash[:notice] %>
-  <div class="alert alert-success"><%= flash[:notice] %></div>
-<% elsif flash[:alert] %>
-  <div class="alert alert-danger"><%= flash[:alert] %></div>
-<% end %>
+<h1>Available Combos for <%= @customer.name %></h1>
 
 <% if @combos.any? %>
-  <h3>Assigned Combos:</h3>
-  <ul>
-    <% @combos.each do |combo| %>
-      <% total_redeemed = Redeem.where(customer: @customer, combo: combo).count %>
-      <% remaining = combo.quantity - total_redeemed %>
+  <table class="table table-striped mt-4">
+    <thead>
+    <tr>
+      <th>Service Name</th>
+      <th>Total Quantity</th>
+      <th>Remaining Quantity</th>
+      <th>Discount (%)</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @customer_combos.each do |cc| %>
+      <% customer_combo = cc.combo.service.name %>
+      <% total_redeemed = cc.redeems.count %>
+      <% remaining = cc.combo.quantity - total_redeemed %>
 
-      <li>
-        <strong><%= combo.service.name %></strong><br>
-        Total Quantity: <%= combo.quantity %><br>
-        Redeemed: <%= total_redeemed %><br>
-        Remaining: <%= remaining %><br>
-
-        <% if remaining > 0 %>
-          <%= button_to "Redeem", redeem_combo_redeems_path(combo_id: combo.id), method: :post, class: "btn btn-success btn-sm" %>
-        <% else %>
-          <span class="text-muted">No more redemptions left</span>
-        <% end %>
-      </li>
+      <tr>
+        <td><%= customer_combo %></td>
+        <td><%= cc.combo.quantity %></td>
+        <td><%= remaining %></td>
+        <td><%= cc.combo.discount %></td>
+        <td>
+          <% if remaining > 0 %>
+            <%= button_to "Redeem", redeem_combo_redeems_path(customer_combo_id: cc.id, customer_id: @customer.id), method: :post, class: "btn btn-primary" %>
+          <% else %>
+            <span class="text-danger">No remaining quantity</span>
+          <% end %>
+        </td>
+      </tr>
     <% end %>
-
-  </ul>
+    </tbody>
+  </table>
 <% else %>
-  <p>This customer does not have any combos assigned.</p>
+  <p>No combos found for this customer.</p>
+  <%= link_to "Back", check_combos_redeems_path %>
 <% end %>
-
-<%= link_to "Back", redeems_path, class: "btn btn-secondary" %>

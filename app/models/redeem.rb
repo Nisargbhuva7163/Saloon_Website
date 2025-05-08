@@ -1,4 +1,3 @@
 class Redeem < ApplicationRecord
-  belongs_to :customer
-  belongs_to :combo
+  belongs_to :customer_combo
 end

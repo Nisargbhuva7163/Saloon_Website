@@ -8,7 +8,7 @@
   <%= f.submit "Search", class: "btn btn-primary mt-2" %>
 <% end %>
 
-<%= form_with url: select_customer_customer_combos_path, method: :post, local: true do |form| %>
+<%= form_with url: assign_combo_customer_combos_path, method: :get, local: true do |form| %>
   <table class="table table-striped mt-4">
     <thead>
     <tr>
@@ -31,13 +31,3 @@
   </table>
   <%= form.submit "Next: Assign Combo", class: "btn btn-success" %>
 <% end %>
-
-
-
-
-
-
-
-
-
-
