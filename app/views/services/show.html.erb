@@ -1,9 +1,15 @@
-<h1>Service Details</h1>
-
-<p><strong>Name:</strong><%= @service.name %></p>
-<p><strong>Price:</strong><%= @service.price %></p>
-
-
-<%= link_to "Edit", edit_service_path(@service) %>
-
-<%= link_to "Back", new_service_path %>
+<div class="container mt-5">
+  <div class="card shadow-sm">
+    <div class="card-header bg-info text-white">
+      <h1>Service Details</h1>
+    </div>
+    <div class="card-body">
+      <p><strong>Name:</strong> <%= @service.name %></p>
+      <p><strong>Price:</strong> <%= @service.price %></p>
+    </div>
+    <div class="card-footer">
+      <%= link_to "Edit", edit_service_path(@service), class: 'btn btn-warning btn-sm mr-2' %>
+      <%= link_to "Back", new_service_path, class: 'btn btn-secondary btn-sm' %>
+    </div>
+  </div>
+</div>

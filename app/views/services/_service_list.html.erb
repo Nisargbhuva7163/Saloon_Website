@@ -1,23 +1,30 @@
-<h1>Services</h1>
+<div class="container mt-5">
+  <h1 class="mb-4">Services</h1>
 
-<table>
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Price</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% if @services.present? %>
-    <% @services.each do |service| %>
-      <tr>
-        <td><%= service.name %></td>
-        <td><%= service.price %></td>
-        <td><%= link_to 'Show', service_path(service) %></td>
-        <td><%= link_to 'Edit', edit_service_path(service) %></td>
-        <td><%= button_to 'Delete', service_path(service), method: :delete, data:{ turbo_confirm: "Are you sure?"} %></td>
-      </tr>
+  <table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% if @services.present? %>
+      <% @services.each do |service| %>
+        <tr>
+          <td><%= service.name %></td>
+          <td><%= service.price %></td>
+          <td>
+            <div class="btn-group" role="group">
+              <%= link_to 'Show', service_path(service), class: 'btn btn-info btn-sm me-2' %>
+              <%= link_to 'Edit', edit_service_path(service), class: 'btn btn-warning btn-sm me-2' %>
+              <%= button_to 'Delete', service_path(service), method: :delete, data:{ turbo_confirm: "Are you sure?" }, class: 'btn btn-danger btn-sm' %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
     <% end %>
-  <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>
