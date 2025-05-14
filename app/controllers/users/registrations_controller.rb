@@ -2,6 +2,7 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
   skip_before_action :require_no_authentication, only: [ :new, :create ], if: -> { current_user.has_role?(:admin) }
+  before_action :configure_permitted_parameters
   # GET /resource/sign_up
   # def new
   #   super
@@ -37,17 +38,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-  # end
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  # end
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:phone_number])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:phone_number])
+  end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
