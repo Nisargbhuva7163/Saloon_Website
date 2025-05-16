@@ -67,3 +67,7 @@ end
 gem "devise", "~> 4.9"
 
 gem "rolify", "~> 6.0"
+
+gem "twilio-ruby"
+
+gem "dotenv-rails", group: :development
