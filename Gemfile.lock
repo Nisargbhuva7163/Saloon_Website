@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/activerecord-hackery/ransack.git
-  revision: 9c66f49fc1be1a570d7b5ff1768b0bbc4a4f4524
+  revision: e06a27ded233166362fdd9e6ca3996cecbef8265
   specs:
     ransack (4.3.0)
       activerecord (>= 7.1)
@@ -123,7 +123,7 @@ GEM
     dotenv-rails (3.1.8)
       dotenv (= 3.1.8)
       railties (>= 6.1)
-    drb (2.2.1)
+    drb (2.2.3)
     ed25519 (1.4.0)
     erubi (1.13.1)
     et-orbi (1.2.11)
